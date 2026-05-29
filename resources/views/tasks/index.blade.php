@@ -16,7 +16,7 @@
 
                 <div class="flex gap-4">
                     <a href="{{ route('tasks.edit', $task->id) }}" class="text-blue-500">Edit</a>
-
+                    <a href="{{ route('tasks.index', $task->id) }}" class="text-green-500">Duplicate</a>
                     <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('Delete this task?')">
                         @csrf
                         @method('DELETE')
@@ -28,4 +28,5 @@
             <li class="p-4 text-center text-gray-500">No tasks yet.</li>
         @endforelse
     </ul>
+    
 </x-layout>

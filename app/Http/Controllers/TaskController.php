@@ -18,6 +18,12 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
+    public function duplicate()
+    {
+        return view('tasks.duplicate');
+        $tasks->duplicates();
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -49,11 +55,12 @@ class TaskController extends Controller
 
         $task->update($validated);
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->with('success', 'Status updated successfully.');
     }
 
-    public function updateStatus(Request $request, Task $task)
+    public function updateStatus(Task $task)
     {
+        $task->update();
         return redirect()->route('tasks.index')->with('success', 'Status updated successfully.');
     }
 
